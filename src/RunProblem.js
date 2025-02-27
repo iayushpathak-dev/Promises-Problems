@@ -1,6 +1,8 @@
+import { testPromises } from "./problems/commonPromises.js";
 import { convertCallbackToPromise } from "./problems/convertCallbackToPromise.js";
 import delayFunctionUsingPromise from "./problems/delayFunctionUsingPromise.js";
 import { promiseAll } from "./problems/promiseAll.js";
+import { promiseAllSettled } from "./problems/promiseAllSettled.js";
 import { fetchData, retry } from "./problems/retryFunctionUsingpromise.js";
 import { rl } from "./ReadLine.js";
 
@@ -22,9 +24,15 @@ export const runProblem = (problemType) => {
       retry(fetchData, 3)
         .then((res) => console.log(res))
         .catch((err) => console.error(err));
+      break;
 
     case "Promise.all":
-      promiseAll();
+      promiseAll(testPromises);
+      break;
+
+    case "Promise.allSettled":
+      promiseAllSettled(testPromises);
+      break;
 
     default:
       console.log("Invalid problem type");
